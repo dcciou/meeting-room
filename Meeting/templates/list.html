@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}會議室列表{% endblock %}
+{% include 'calendar.html' %}
+{% block body %}
+<h1>會議室列表：</h1>
+    {% for i in room %}
+<h3><a href="{% url 'dinosaur:appointment' i.id %}">{{ i.num }}_{{ i.id }}</a></h3>
+    {% endfor %}
+{% endblock %}

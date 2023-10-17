@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>课表</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>课表</h1>
+    <table>
+        <tr>
+            <th>时间</th>
+            <!-- 根据您的需求添加日期列 -->
+            {% for date in dates %}
+            <th>{{ date }}</th>
+            {% endfor %}
+        </tr>
+        {% for time in time_range %}
+        <tr>
+            <td>{{ time }}</td>
+            {% for date in dates %}
+            <td>
+                {% for appointment in appointments %}
+                {% if appointment.date == date and appointment.start_time <= time and appointment.end_time > time %}
+                已预约
+                {% endif %}
+                {% endfor %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
